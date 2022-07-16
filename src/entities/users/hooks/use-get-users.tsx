@@ -1,30 +1,25 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { User, UsersFromApi } from "../types";
 
 export const useGetUsers = (): User[] | null => {
-  const [fetchedUsers, getUsers] = useState<UsersFromApi[]>([]);
+  const [userList, getUsers] = useState<User[] | null>([]);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
-      .then((users) => {
+      .then((users: UsersFromApi) => {
         if (users && Array.isArray(users)) {
-          getUsers(users);
+          getUsers(
+            users.map(({ id, email, phone, name }) => ({
+              id,
+              email: email ?? "не указан",
+              phone: phone ?? "не указан",
+              name: name ?? "не указан",
+            }))
+          );
         }
       });
   }, []);
 
-  const userList: User[] | null = useMemo(
-    () =>
-      fetchedUsers.length > 0
-        ? fetchedUsers.map(({ id, email, phone, name }) => ({
-            id,
-            email,
-            phone,
-            name,
-          }))
-        : null,
-    [fetchedUsers]
-  );
   return userList;
 };

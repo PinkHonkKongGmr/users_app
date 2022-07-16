@@ -21,20 +21,20 @@ export type UserAdressFromApi = {
 export type UserAdress = Pick<UserAdressFromApi, "city" | "street">
 
 export type UserBase = {
-    name: string,
-    phone: string,
-    email: string
+    name?: string,
+    phone?: string,
+    email?: string
 }
 
 export type UserBaseExtended = UserBase & {
     id: number,
-    username: string,
-    website: string,
+    username?: string,
+    website?: string,
 }
 
 export type UsersFromApi = UserBaseExtended & {
-    company: UserCompanyFromApi,
-    address: UserAdressFromApi
+    company?: UserCompanyFromApi,
+    address?: UserAdressFromApi
 }
 
 
