@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { User, UsersFromApi } from "../types";
 
 export const useGetUsers = (userId?: string): User[] | null | string => {
-  const [userList, getUsers] = useState<User[] | null | string>([]);
+  const [userList, getUsers] = useState<User[] | null | string>(null);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
