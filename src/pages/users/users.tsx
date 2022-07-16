@@ -1,32 +1,20 @@
 import { FC } from "react";
-import { useMatch, useNavigate } from "react-router-dom";
-import { columns } from "../../entities/users/const";
+import { columns } from "../../entities/users/constants";
 import { useGetUsers } from "../../entities/users/hooks/use-get-users";
-import { User } from "../../entities/users/types";
-import TableWithClickableCell from "../../shared/ui/table-with-clickable-cell";
+import UserTable from "../../features/user-table";
 
 const Users: FC = () => {
-  const users = useGetUsers();
-  let navigate = useNavigate();
-  let isItUsersPage = useMatch("users");
+  const data = useGetUsers();
 
-  if (!users) {
+  if (!data) {
     return <div>loading</div>;
   }
 
-  const onClickHandler = (id: string | number) => () => {
-    navigate(`${isItUsersPage ? ".." : "users"}/${id}`);
-  };
+  if (typeof data === "string") {
+    return <div>{data}</div>;
+  }
 
-  return (
-    <TableWithClickableCell<User>
-      columns={columns}
-      rows={users}
-      withPagination
-      clickableCellIndex={0}
-      onClick={onClickHandler}
-    />
-  );
+  return <UserTable columns={columns} rows={data} />;
 };
 
 export default Users;
