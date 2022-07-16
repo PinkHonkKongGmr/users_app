@@ -1,11 +1,10 @@
 import { FC } from "react";
-
 import GetUsers from "../../features/get-users";
-import UserList from "../../features/user-list";
+import User from "../../features/user";
 
 const Users: FC = () => (
   <GetUsers>
-    <UserList />
+    <User />
   </GetUsers>
 );
 

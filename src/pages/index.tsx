@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./layout";
 import NotFoundPage from "./not-found-page";
-import UserProfile from "./user-profile";
+import UserProfilePage from "./user-profile";
 import UsersPage from "./users";
 const auth = true;
 
@@ -14,7 +14,7 @@ const Routing = () => {
           <Route index element={<UsersPage />} />
           <Route path="users">
             <Route index element={<UsersPage />} />
-            <Route path=":id" element={<UserProfile />} />
+            <Route path=":id" element={<UserProfilePage />} />
           </Route>
         </Route>
       </Routes>
