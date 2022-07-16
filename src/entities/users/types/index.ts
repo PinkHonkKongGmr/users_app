@@ -37,8 +37,8 @@ export type UsersFromApi = UserBaseExtended & {
     address?: UserAdressFromApi
 }
 
-
-
 export type User = Pick<UserBaseExtended, "name" | "phone" | "email" | "id">
+
+
 
 
