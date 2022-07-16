@@ -9,7 +9,7 @@ export const userColumns: UserBase = {
 
 export const columns: Column<UserBase>[] = ["name", "phone", "email"].map((key) => ({
     id: key as keyof UserBase,
-    label: userColumns[key as keyof UserBase],
+    label: userColumns[key as keyof UserBase] ?? "не указан",
     minWidth: 170,
     align: "center",
 }))
