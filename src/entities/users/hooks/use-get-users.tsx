@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { User, UsersFromApi } from "../types";
 
-export const useGetUsers = (): User[] | null => {
-  const [userList, getUsers] = useState<User[] | null>([]);
+export const useGetUsers = (): User[] | null | string => {
+  const [userList, getUsers] = useState<User[] | null | string>([]);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -18,6 +18,9 @@ export const useGetUsers = (): User[] | null => {
             }))
           );
         }
+      })
+      .catch(() => {
+        getUsers("bad connection");
       });
   }, []);
 

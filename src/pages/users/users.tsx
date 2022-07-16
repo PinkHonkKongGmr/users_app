@@ -14,6 +14,10 @@ const Users: FC = () => {
     return <div>loading</div>;
   }
 
+  if (typeof users === "string") {
+    return <div>{users}</div>;
+  }
+
   const onClickHandler = (id: string | number) => () => {
     navigate(`${isItUsersPage ? ".." : "users"}/${id}`);
   };

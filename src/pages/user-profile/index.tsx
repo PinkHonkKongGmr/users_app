@@ -12,6 +12,10 @@ const UserProfile: FC = () => {
   if (!users) {
     return <div>loading</div>;
   }
+
+  if (typeof users === "string") {
+    return <div>{users}</div>;
+  }
   const currentUser = users.filter(
     ({ id: userId }) => userId.toString() === id
   );
